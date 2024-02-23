@@ -1,0 +1,44 @@
+.externDiv {
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    z-index: 50;
+    color: black;
+    @media (min-width: 1024px) {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+    padding: 4px 20px;
+}
+
+.logoDiv {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.linksDiv {
+    @media (min-width: 1024px) {
+        display: flex;
+    }
+    @media (min-width: 768px) {
+        display: flex;
+    }
+    @media (min-width: 1024px) {
+        flex: 1;
+    }
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: normal;
+    display: flex; /* revisar*/
+}
+
+.listDiv {
+    flex: 10;
+}
+.listStyles{
+    display: flex;
+    gap: 8px;
+    margin-right: 16px;
+    font-size: 18px;
+}
