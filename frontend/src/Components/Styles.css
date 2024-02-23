@@ -1,3 +1,6 @@
+body {
+    font-size: 20px;
+}
 .body-div{
     height: 700px;
     background-color: blueviolet;
@@ -52,5 +55,9 @@
 .style-text{
     display: flex;
     flex-direction: column;
+
+}
+.texto-grande {
+    font-size: 50px;
 }
 @import "~bootstrap/scss/bootstrap";
