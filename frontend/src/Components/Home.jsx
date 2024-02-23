@@ -1,6 +1,11 @@
+import "./Styles.css";
+
+
 const Home = () => {
     return (
-        <h1>Home</h1>
-    )
+        <div className="body-div">
+
+        </div>
+        )
 }
 export default Home;

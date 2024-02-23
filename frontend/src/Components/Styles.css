@@ -1,9 +1,15 @@
+.body-div{
+    height: 700px;
+    background-color: blueviolet;
+    color:white
+}
 .externDiv {
     height: 10vh;
     display: flex;
     justify-content: space-between;
     z-index: 50;
-    color: black;
+    color: rgb(255, 255, 255);
+    background-color: rgb(69, 44, 88);
     @media (min-width: 1024px) {
         padding-top: 5rem;
         padding-bottom: 5rem;

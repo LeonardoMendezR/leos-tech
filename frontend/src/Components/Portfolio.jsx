@@ -1,6 +1,8 @@
+import "./Styles.css";
+
 const Portfolio = () => {
     return (
-        <div>
+        <div className="body-div">
             <h1>Portafolio</h1>
         </div>
     )
