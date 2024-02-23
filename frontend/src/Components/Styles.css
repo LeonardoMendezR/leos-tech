@@ -48,3 +48,9 @@
     margin-right: 16px;
     font-size: 18px;
 }
+
+.style-text{
+    display: flex;
+    flex-direction: column;
+}
+@import "~bootstrap/scss/bootstrap";
