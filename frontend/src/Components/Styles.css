@@ -1,17 +1,21 @@
+/*@import "~bootstrap/scss/bootstrap";*/
+
 body {
     font-size: 20px;
 }
-.body-div{
+
+.body-div {
     height: 700px;
     background-color: blueviolet;
-    color:white
+    color: white
 }
+
 .externDiv {
     height: 10vh;
     display: flex;
     justify-content: space-between;
     z-index: 50;
-    color: rgb(255, 255, 255);
+    color: rgb(253, 253, 253);
     background-color: rgb(69, 44, 88);
     @media (min-width: 1024px) {
         padding-top: 5rem;
@@ -26,6 +30,12 @@ body {
     flex: 1;
 }
 
+.image {
+    height: 5em;
+    width: 5em;
+    border-radius: 20px;
+}
+
 .linksDiv {
     @media (min-width: 1024px) {
         display: flex;
@@ -37,27 +47,54 @@ body {
         flex: 1;
     }
     align-items: center;
+    float: right;
     justify-content: flex-end;
     font-weight: normal;
     display: flex; /* revisar*/
 }
-
+.name{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Bernard MT Condensed", arial, serif;
+    font-size: xxx-large;
+}
 .listDiv {
     flex: 10;
 }
-.listStyles{
+
+.listStyles {
     display: flex;
     gap: 8px;
-    margin-right: 16px;
     font-size: 18px;
+
 }
 
-.style-text{
+.style-text {
     display: flex;
     flex-direction: column;
 
 }
-.texto-grande {
+
+.bigTitle {
     font-size: 30px;
+    text-align: center;
 }
-@import "~bootstrap/scss/bootstrap";
+
+p {
+    text-align: left;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.Footer{
+    background-color: #452c58;
+    margin-bottom: 20em;
+    padding-bottom: 50em;
+    color: white;
+}
+.externFooter{
+
+}
+.linksFooter{
+}
