@@ -1,22 +1,15 @@
 /*@import "~bootstrap/scss/bootstrap";*/
 
-body {
-    font-size: 20px;
-}
 
-.body-div {
-    height: 700px;
-    background-color: blueviolet;
-    color: white
-}
-
+/*Header*/
 .externDiv {
     height: 10vh;
     display: flex;
     justify-content: space-between;
     z-index: 50;
-    color: rgb(253, 253, 253);
-    background-color: rgb(69, 44, 88);
+    color: #ffffff;
+    background-color: rgb(65, 90, 119);
+    border-radius: 5%;
     @media (min-width: 1024px) {
         padding-top: 5rem;
         padding-bottom: 5rem;
@@ -33,7 +26,7 @@ body {
 .image {
     height: 5em;
     width: 5em;
-    border-radius: 20px;
+    border-radius: 10%;
 }
 
 .linksDiv {
@@ -52,16 +45,20 @@ body {
     font-weight: normal;
     display: flex; /* revisar*/
 }
-.name{
+
+.name {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: "Bernard MT Condensed", arial, serif;
     font-size: xxx-large;
+
 }
+
 .listDiv {
     flex: 10;
+
 }
 
 .listStyles {
@@ -70,31 +67,107 @@ body {
     font-size: 18px;
 
 }
-
-.style-text {
-    display: flex;
-    flex-direction: column;
-
-}
-
+/*home*/
 .bigTitle {
-    font-size: 30px;
+    font-size: 2em;
     text-align: center;
 }
 
 p {
-    text-align: left;
+    font-size: 20px;
+    text-align: center;
     padding-left: 5%;
     padding-right: 5%;
-}
-.Footer{
-    background-color: #452c58;
-    margin-bottom: 20em;
-    padding-bottom: 50em;
-    color: white;
-}
-.externFooter{
 
 }
-.linksFooter{
+
+.contenedor {
+    border: 1px solid #415a77;
+    border-radius: 5%;
+    padding: 16px;
+    margin: 16px;
+    text-align: center;
+    background-color: #415a77;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.expandido {
+    height: 50%;
+    border-radius: 5%;
+}
+
+.title {
+    background-color: #415a77;
+    border-radius: 5%;
+    padding: 10px;
+    text-align: center;
+    color: #e0e1dd;
+
+}
+
+.contenido {
+    background-color: #778da9;
+    padding: 10px;
+    border-radius: 5%;
+    color: #e0e1dd;
+    text-shadow: black;
+}
+body {
+    background-color: #e0e1dd;
+}
+
+.body-div {
+    height: 700px;
+    background-color: #e0e1dd;
+    color: #000000;
+    margin-bottom: 10%; /* Ajusta según la altura de tu footer */
+}
+.site-footer {
+    background-color: #0d1b2a;
+    color: #e0e1dd;
+    padding: 20px;
+    text-align: center;
+    position: relative; /* Cambia a relative en lugar de fixed */
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+/*footer*/
+.footer-content {
+    display: flex;
+    width: 100%;
+}
+
+.footer-section {
+    flex: 2;
+    margin-right: 20px;
+}
+
+.footer-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.footer-section p {
+    font-size: 1rem;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section a {
+    color: #e0e1dd;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    text-align: left;
 }
