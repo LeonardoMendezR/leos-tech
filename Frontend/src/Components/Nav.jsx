@@ -7,7 +7,7 @@ const Nav = () => {
         <nav>
             <div className="externDiv">
                 <div className="logoDiv">
-                    <img className="image" src="/imagenes/logoLeo.jpg"/>
+                    <img className="image" src="../../imagenes/logoLeo.jpg"/>
                 </div>
                 <div className="name">
                     <h2> LEOS' TECH</h2>
@@ -16,10 +16,10 @@ const Nav = () => {
                     <div className="listDiv">
                         <ul className="listStyles">
                             <Link to="Home">
-                                <li>Home</li>
+                                <li>Inicio</li>
                             </Link>
                             <Link to="Service">
-                                <li>Service</li>
+                                <li>Servicios</li>
                             </Link>
                             <Link to="Portfolio">
                                 <li>Portafolio</li>
