@@ -15,8 +15,8 @@ type userServiceInterface interface {
 	GetUserById(id int) (dto.UserDto, error)
 	GetUsers() (dto.UsersDto, error)
 	UserLogin(loginDto dto.UserDto) (dto.UserDto, error)
+	DeleteUserById(id int) error
 }
-
 var UserService userServiceInterface
 
 func init() {
@@ -114,4 +114,12 @@ func (s *userService) UserLogin(loginDto dto.UserDto) (dto.UserDto, error) {
 	userDto.Email = user.Email
 	userDto.Role = user.Role
 	return userDto, nil
+}
+func (s *userService) DeleteUserById(id int) error {
+    // Llama al cliente para eliminar el usuario por su ID
+    err := client.DeleteUserById(id)
+    if err != nil {
+        return err
+    }
+    return nil
 }

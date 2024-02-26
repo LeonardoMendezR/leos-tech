@@ -33,7 +33,7 @@ func InsertImages(c *gin.Context) {
 		}
 
 		imageDTO := dto.ImageDto{
-			HotelId: id,
+			PortfolioId: id,
 			Path:    "Images/" + fileName,
 		}
 		imagesDto = append(imagesDto, imageDTO)

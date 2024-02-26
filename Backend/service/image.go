@@ -28,7 +28,7 @@ func (s *imageService) InsertImages(imagesDto dto.ImagesDto) (dto.ImagesDto, err
 		var image model.Image
 
 		image.Path = imageDto.Path
-		image.HotelId = imageDto.HotelId
+		image.PortfolioId = imageDto.PortfolioId
 
 		images = append(images, image)
 	}
@@ -62,7 +62,7 @@ func (s *imageService) GetImageById(id int) (dto.ImageDto, error) {
 
 	imageDto.Id = image.Id
 	imageDto.Path = image.Path
-	imageDto.HotelId = image.HotelId
+	imageDto.PortfolioId = image.PortfolioId
 
 	return imageDto, nil
 }

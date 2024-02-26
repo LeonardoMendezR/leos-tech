@@ -22,6 +22,18 @@ func InsertUser(user model.User) model.User {
 	return user
 }
 
+
+func DeleteUserById(id int) error {
+	var user model.User
+	result := Db.Where("id=?", id).Delete(&user)
+	if result.Error != nil {
+		log.Error("Failed to delete user.")
+		return result.Error
+	}
+	log.Debug("User deleted:", id)
+	return nil
+}
+
 func GetUserById(id int) model.User {
 	var user model.User
 
