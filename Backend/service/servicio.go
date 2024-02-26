@@ -1,6 +1,7 @@
 package service
 
 import (
+	"errors"
 	"project/client"
 	"project/dto"
 	"project/model"
@@ -21,37 +22,31 @@ func init() {
 }
 
 func (s *servicioService) GetServicioById(id int) (dto.ServicioDto, error) {
-	var servicio model.Servicio
+	var servicio model.Servicio = client.GetServicioById(id)
 
-	servicio, err := client.GetServicioById(id)
-	if err != nil {
-		return dto.ServicioDto{}, err
+	var servicioDto dto.ServicioDto
+
+	if servicio.Id == 0 {
+		return servicioDto, errors.New("servicio not found")
 	}
 
-	servicioDto := dto.ServicioDto{
-		Id:   servicio.Id,
-		NameTech: servicio.NameTech,
-		// Agregar otros campos según la estructura del servicio en el modelo
-	}
+	servicioDto.Id = servicio.Id
+	servicioDto.Area = servicio.Area
+	servicioDto.NameTech = servicio.NameTech
 
 	return servicioDto, nil
 }
 
 func (s *servicioService) GetServicios() (dto.ServiciosDto, error) {
-	var servicios model.Servicios
-
-	servicios, err := client.GetServicios()
-	if err != nil {
-		return nil, err
-	}
-
+	var servicios model.Servicios = client.GetServicios()
 	var serviciosDto dto.ServiciosDto
+
 	for _, servicio := range servicios {
-		servicioDto := dto.ServicioDto{
-			Id:   servicio.Id,
-			NameTech: servicio.NameTech,
-			// Agregar otros campos según la estructura del servicio en el modelo
-		}
+		var servicioDto dto.ServicioDto
+		servicioDto.Id = servicio.Id
+		servicioDto.Area = servicio.Area
+		servicioDto.NameTech = servicio.NameTech
+
 		serviciosDto = append(serviciosDto, servicioDto)
 	}
 

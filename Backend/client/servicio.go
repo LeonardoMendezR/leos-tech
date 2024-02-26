@@ -6,28 +6,22 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func GetServicioById(id int) (model.Servicio, error) {
+func GetServicioById(id int) model.Servicio {
 	var servicio model.Servicio
 
-	err := Db.Where("id = ?", id).First(&servicio).Error
-	if err != nil {
-		log.Error("Failed to get service by ID:", err)
-		return model.Servicio{}, err
-	}
+	Db.Where("id = ?", id).First(&servicio)
+	log.Debug("servicio: ", servicio)
 
-	return servicio, nil
+	return servicio
 }
 
-func GetServicios() (model.Servicios, error) {
+func GetServicios() model.Servicios {
 	var servicios model.Servicios
+	Db.Find(&servicios)
 
-	err := Db.Find(&servicios).Error
-	if err != nil {
-		log.Error("Failed to get services:", err)
-		return nil, err
-	}
+	log.Debug("Servicios: ", servicios)
 
-	return servicios, nil
+	return servicios
 }
 
 func DeleteServicioById(id int) error {
