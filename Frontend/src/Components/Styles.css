@@ -13,7 +13,6 @@
     z-index: 50;
     color: #ffffff;
     background-color: rgb(65, 90, 119);
-    border-radius: 5%;
     @media (min-width: 1024px) {
         padding-top: 5rem;
         padding-bottom: 5rem;
@@ -57,6 +56,9 @@
     align-items: center;
     font-family: "Libre Baskerville", arial, serif;
     font-size: xxx-large;
+    @media(orientation: portrait){
+        display: none;
+    }
 
 }
 
@@ -87,7 +89,6 @@ p {
 
 .contenedor {
     border: 1px solid #415a77;
-    border-radius: 5%;
     padding: 16px;
     margin: 16px;
     text-align: center;
@@ -98,12 +99,10 @@ p {
 
 .expandido {
     height: 50%;
-    border-radius: 5%;
 }
 
 .title {
     background-color: #415a77;
-    border-radius: 5%;
     padding: 10px;
     text-align: center;
     color: #e0e1dd;
@@ -113,7 +112,6 @@ p {
 .contenido {
     background-color: #778da9;
     padding: 10px;
-    border-radius: 5%;
     color: #e0e1dd;
     text-shadow: black;
 }
@@ -126,7 +124,11 @@ body {
     background-color: #e0e1dd;
     color: #000000;
     margin-bottom: 10%; /* Ajusta según la altura de tu footer */
+    @media(orientation: portrait){
+        margin-bottom: 160%;
+    }
 }
+/*footer*/
 .site-footer {
     background-color: #0d1b2a;
     color: #e0e1dd;
@@ -137,16 +139,16 @@ body {
 }
 
 .container {
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-/*footer*/
 .footer-content {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     width: 100%;
 }
-
 .footer-section {
     flex: 2;
     margin-right: 20px;
@@ -170,7 +172,6 @@ body {
     color: #e0e1dd;
     text-decoration: none;
 }
-
 .footer-bottom {
     margin-top: 20px;
     text-align: left;
