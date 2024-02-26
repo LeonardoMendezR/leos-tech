@@ -1,10 +1,12 @@
 /*@import "~bootstrap/scss/bootstrap";*/
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
 .libre-baskerville-regular {
     font-family: "Libre Baskerville", serif;
     font-weight: 400;
     font-style: normal;
 }
+
 /*Header*/
 .externDiv {
     height: 10vh;
@@ -56,7 +58,7 @@
     align-items: center;
     font-family: "Libre Baskerville", arial, serif;
     font-size: xxx-large;
-    @media(orientation: portrait){
+    @media (orientation: portrait) {
         display: none;
     }
 
@@ -73,6 +75,7 @@
     font-size: 18px;
 
 }
+
 /*home*/
 .bigTitle {
     font-size: 2em;
@@ -94,7 +97,7 @@ p {
     text-align: center;
     background-color: #415a77;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
+    transition: height 0.5s ease;
 }
 
 .expandido {
@@ -114,7 +117,9 @@ p {
     padding: 10px;
     color: #e0e1dd;
     text-shadow: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 body {
     background-color: #e0e1dd;
 }
@@ -124,10 +129,49 @@ body {
     background-color: #e0e1dd;
     color: #000000;
     margin-bottom: 10%; /* Ajusta según la altura de tu footer */
-    @media(orientation: portrait){
+    @media (orientation: portrait) {
         margin-bottom: 160%;
     }
 }
+
+/*service*/
+.my-bookings-container {
+    display: flex; /* Cambia a flex para que los elementos se coloquen en línea */
+    justify-content: space-around; /* Ajusta según tus necesidades de espaciado */
+    align-items: center; /* Ajusta según tus necesidades de alineación vertical */
+    flex-wrap: wrap; /* Permite el ajuste automático a la siguiente línea */
+}
+
+.bookingContainer {
+    flex: 1;
+    margin: 2%;
+    padding-left: 2%;
+    @media (orientation: portrait) {
+        margin-left: 10%;
+    }
+}
+
+.booking-card {
+    border: 1px solid #e0e1dd;
+    border-radius: 8px;
+    padding: 16px;
+    width: 300px;
+    text-align: center;
+    background-color: #415a77;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.booking-header {
+    color: #e0e1dd;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.booking-info {
+    margin: 8px 0;
+    color: #e0e1dd;
+}
+
 /*footer*/
 .site-footer {
     background-color: #0d1b2a;
@@ -143,12 +187,14 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
 .footer-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
 }
+
 .footer-section {
     flex: 2;
     margin-right: 20px;
@@ -172,6 +218,7 @@ body {
     color: #e0e1dd;
     text-decoration: none;
 }
+
 .footer-bottom {
     margin-top: 20px;
     text-align: left;

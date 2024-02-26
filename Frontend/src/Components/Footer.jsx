@@ -15,7 +15,7 @@ const Footer = () => {
 
                     <div className="footer-section contact">
                         <h2>Contacto</h2>
-                        <p>Email: contacto@leostech.com //ojalá</p>
+                        <p>Email: contacto@leostech.com</p>
                         <p>Teléfono: (+54) 3513941076</p>
                         <p>Teléfono: (+54) 3513745250</p>
                     </div>
