@@ -1,8 +1,33 @@
 version: '3'
 
 services:
-
+  database:
+    build: ./Database
+    environment:
+      MYSQL_DATABASE: leos tech
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_TCP_PORT: 3307
+    ports:
+      - "3307:3306"
+    expose:
+      - 3307
+    volumes:
+      - ./Database:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root"]
+      timeout: 20s
+      retries: 10
   frontend:
     build: ./Frontend
+    depends_on:
+      database:
+        condition: service_healthy
     ports:
       - "5173:5173"
+  backend:
+    build: ./Backend
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - "8090:8090"
