@@ -135,23 +135,23 @@ body {
 }
 
 /*service*/
-.my-bookings-container {
+.my-service-container {
     display: flex; /* Cambia a flex para que los elementos se coloquen en línea */
     justify-content: space-around; /* Ajusta según tus necesidades de espaciado */
     align-items: center; /* Ajusta según tus necesidades de alineación vertical */
     flex-wrap: wrap; /* Permite el ajuste automático a la siguiente línea */
 }
 
-.bookingContainer {
+.serviceContainer {
     flex: 1;
     margin: 2%;
     padding-left: 2%;
     @media (orientation: portrait) {
-        margin-left: 10%;
+        margin-left: 12%;
     }
 }
 
-.booking-card {
+.service-card {
     border: 1px solid #e0e1dd;
     border-radius: 8px;
     padding: 16px;
@@ -161,13 +161,13 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.booking-header {
+.service-header {
     color: #e0e1dd;
     font-size: 1.2rem;
     margin-bottom: 8px;
 }
 
-.booking-info {
+.service-info {
     margin: 8px 0;
     color: #e0e1dd;
 }

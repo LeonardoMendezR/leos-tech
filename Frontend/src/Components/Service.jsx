@@ -8,34 +8,34 @@ const Service = () => {
                 tecnologías de vanguardia. Nos destacamos por nuestra capacidad para comprender las necesidades específicas
                 de cada cliente y traducirlas en soluciones innovadoras y eficientes.
             </p>
-            <div className="my-bookings-container">
-                <div className="bookingContainer">
-                    <div className="booking-card">
-                        <h2 className="booking-header">Frontend: </h2>
-                        <p className="booking-info">HTML </p>
-                        <p className="booking-info">CSS </p>
-                        <p className="booking-info">Javascript </p>
-                        <p className="booking-info">React </p>
+            <div className="my-service-container">
+                <div className="serviceContainer">
+                    <div className="service-card">
+                        <h2 className="service-header">Frontend: </h2>
+                        <p className="service-info">HTML </p>
+                        <p className="service-info">CSS </p>
+                        <p className="service-info">Javascript </p>
+                        <p className="service-info">React </p>
                     </div>
                 </div>
-                <div className="bookingContainer">
-                    <div className="booking-card">
-                        <h2 className="booking-header">Backend: </h2>
-                        <p className="booking-info">GoLang </p>
+                <div className="serviceContainer">
+                    <div className="service-card">
+                        <h2 className="service-header">Backend: </h2>
+                        <p className="service-info">GoLang </p>
                     </div>
                 </div>
 
-                <div className="bookingContainer">
-                    <div className="booking-card">
-                        <h2 className="booking-header">Base de datos: </h2>
-                        <p className="booking-info">MySQL </p>
-                        <p className="booking-info">Mongo</p>
+                <div className="serviceContainer">
+                    <div className="service-card">
+                        <h2 className="service-header">Base de datos: </h2>
+                        <p className="service-info">MySQL </p>
+                        <p className="service-info">Mongo</p>
                     </div>
                 </div>
-                <div className="bookingContainer">
-                    <div className="booking-card">
-                        <h2 className="booking-header">Otras tecnologías: </h2>
-                        <p className="booking-info">WordPress </p>
+                <div className="serviceContainer">
+                    <div className="service-card">
+                        <h2 className="service-header">Otras tecnologías: </h2>
+                        <p className="service-info">WordPress </p>
                     </div>
                 </div>
             </div>
