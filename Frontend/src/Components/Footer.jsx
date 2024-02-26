@@ -1,4 +1,4 @@
-import "./Styles.css";
+import "./ComponentsSyles.css";
 import React from "react";
 
 const Footer = () => {
@@ -23,12 +23,12 @@ const Footer = () => {
                         <h2>Encuentranos en redes</h2>
                         <ul className="listStylesFooter">Leonardo Méndez:</ul>
                         <li><a href="https://www.instagram.com/leonardo.mendez_/" target="_blank">Instagram</a></li>
-                        <li><a href="linkedin.com/in/leonardo-tomás-méndez-rodríguez-0108b9214/"
+                        <li><a href="https://www.linkedin.com/in/leonardo-tomás-méndez-rodríguez-0108b9214/"
                                target="_blank">Linkedin</a></li>
 
                         <ul className="listStylesFooter">Leonardo Morabito:</ul>
-                        <li><a href="instagram.com/leo_morabito_2002/" target="_blank">Instagram</a></li>
-                        <li><a href="linkedin.com/in/leonardo-morabito/" target="_blank">Linkedin</a></li>
+                        <li><a href="https://www.instagram.com/leo_morabito_2002/" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com/in/leonardo-morabito/" target="_blank">Linkedin</a></li>
                     </div>
 
                     <div className="footer-section links">

@@ -1,4 +1,4 @@
-import "./Styles.css";
+import "../Styles.css";
 
 const Portfolio = () => {
     return (
