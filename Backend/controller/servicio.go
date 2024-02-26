@@ -1,53 +1,50 @@
 package controller
 
 import (
-    "net/http"
-    "project/dto"
-    "project/service"
-
-    "github.com/gin-gonic/gin"
+	"net/http"
+	"project/dto"
+	"project/service"
+	"strconv"
+	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
 )
-// Función para manejar la solicitud de obtener todos los servicios
-func GetServicios(c *gin.Context) {
-    // Llamar al servicio para obtener todos los servicios
-    servicios, err := service.ServicioService.GetServicios()
-    if err != nil {
-        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-        return
-    }
 
-    // Devolver los servicios obtenidos como respuesta JSON
-    c.JSON(http.StatusOK, servicios)
-}
-
-// Función para manejar la solicitud de obtener un servicio por su ID
 func GetServicioById(c *gin.Context) {
-    // Obtener el ID del servicio de los parámetros de la URL
-    servicioID := c.Param("Id")
 
-    // Llamar al servicio para obtener el servicio por su ID
-    servicio, err := service.ServicioService.GetServicioByid(servicioID)
-    if err != nil {
-        c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
-        return
-    }
+	id, _ := strconv.Atoi(c.Param("id"))
 
-    // Devolver el servicio obtenido como respuesta JSON
-    c.JSON(http.StatusOK, servicio)
+	var servicioDto dto.ServicioDto
+
+	servicioDto, err := service.ServicioService.GetServicioById(id)
+    
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
+	}
+	c.JSON(http.StatusOK, servicioDto)
+
 }
 
-// Función para manejar la solicitud de eliminar un servicio por su ID
+func GetServicios(c *gin.Context) {
+	var serviciosDto dto.ServiciosDto
+
+	serviciosDto, err := service.ServicioService.GetServicios()
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+	c.JSON(http.StatusOK, serviciosDto)
+}
+
 func DeleteServicioById(c *gin.Context) {
-    // Obtener el ID del servicio de los parámetros de la URL
-    servicioID := c.Param("id")
 
-    // Llamar al servicio para eliminar el servicio por su ID
-    err := service.ServicioService.DeleteServicioById(servicioID)
-    if err != nil {
-        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-        return
-    }
+	_, err := strconv.Atoi(c.Param("id"))
 
-    // Devolver una respuesta exitosa
-    c.JSON(http.StatusOK, gin.H{"message": "Servicio eliminado correctamente"})
+	log.Debug("[controller] id de servicio a borrar: " + c.Param("id"))
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "No se pudo eliminar el servicio"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "El servicio fue eliminado correctamente"})
+
 }

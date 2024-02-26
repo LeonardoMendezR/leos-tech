@@ -18,5 +18,11 @@ func mapUrls() {
 
 	router.POST("/login", controller.UserLogin)
 
+	router.GET("/servicio", controller.GetServicios)
+	router.GET("/servicio/:id", controller.GetServicioById)
+	router.DELETE("/service/:id", controller.DeleteServicioById)
+
+
+	
 	log.Info("Finishing mappings configurations")
 }

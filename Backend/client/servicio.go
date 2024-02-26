@@ -3,11 +3,8 @@ package client
 import (
 	"project/model"
 
-	"github.com/jinzhu/gorm"
 	log "github.com/sirupsen/logrus"
 )
-
-var Db *gorm.DB
 
 func GetServicioById(id int) (model.Servicio, error) {
 	var servicio model.Servicio
