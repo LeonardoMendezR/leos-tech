@@ -5,6 +5,7 @@
     font-weight: 400;
     font-style: normal;
 }
+
 /*Header / nav*/
 .externDiv {
     height: 10vh;
@@ -73,9 +74,10 @@
     font-size: 18px;
 
 }
+
 /*modal*/
 /* estilos del nuevo alert */
-.modal, .modal2 {
+.modal {
     display: block; /* Ocultar el modal por defecto */
     position: fixed;
     z-index: 1;
@@ -87,9 +89,10 @@
     justify-content: center;
     align-items: center;
 
+
 }
 
-.modal-content, .modal-content2 {
+.modal-content {
     background-color: #fff;
     color: #1a1a1a;
     padding: 20px;
@@ -102,7 +105,11 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%, -30%);
-    display: grid
+    display: grid;
+    @media (orientation: portrait) {
+        width: 80%;
+        margin-top: 50%;
+    }
 }
 
 .close {
@@ -124,7 +131,7 @@
 
 /* Estilos para botón Cerrar */
 .buttonModal {
-    background-color: #007f7f;
+    background-color: #415a76;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -134,9 +141,10 @@
 }
 
 button:hover {
-    background-color: #005f5f;
+    background-color: #0d1b2a;
 
 }
+
 /*footer*/
 .site-footer {
     background-color: #0d1b2a;

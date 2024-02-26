@@ -20,6 +20,7 @@ p {
     background-color: #415a77;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: height 0.5s ease;
+    border-radius: 40px;
 }
 
 .expandido {
@@ -38,7 +39,8 @@ p {
     background-color: #778da9;
     padding: 10px;
     color: #e0e1dd;
-    text-shadow: black;
+    border-radius: 40px;
+    text-shadow: 1px 1px 2px black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -104,20 +106,15 @@ body {
     text-align: center;
     display: grid;
     align-Items: center;
-    background-color: #424242;
+    background-color: #415a76;
     padding: 2rem;
     border-radius: 40px;
     width: 30%;
-    box-shadow: 5px 5px 5px 5px rgb(104, 101, 101);
-}
-#h1Login, #h1Register {
-    font-family: Georgia, serif;
-    text-Align: center;
-    color: #2a443b;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 5px 5px rgb(65, 90, 118);
+    color: #ffffff;
+    @media(orientation: portrait){
+        width: 80%;
+    }
 }
 
 #inputImage,
@@ -126,14 +123,14 @@ body {
 #inputEmailRegister, #inputPasswordRegister {
     margin-Bottom: 10px;
     padding: 15px;
-    background-color: #424242;
+    background-color: #415a76;
     border: 1px solid;
     border-radius: 15px;
     font-size: 15px;
 }
 
 #botonLogin {
-    background-Color: #007f7f;
+    background-Color: #778da9;
     color: #ffffff;
     padding: 8px 16px;
     text-shadow: 1px 1px 2px black;

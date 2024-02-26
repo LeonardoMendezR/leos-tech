@@ -80,8 +80,7 @@ const Login = () => {
 
     };
     return (
-        <body>
-        <div id="body">
+        <div className={"body-div"}>
             <CustomModal
                 showModal={showAlert2}
                 closeModal={closeAlert2}
@@ -92,7 +91,7 @@ const Login = () => {
                 closeModal={closeAlert1}
                 content="Usuario no registrado"
             />
-            <h1 id="h1Login">Iniciar sesión</h1>
+            <h1 className={"bigTitle"}>Iniciar sesión</h1>
             <form id="formLogin" onSubmit={handleSubmit}>
                 <input
                     id={'inputEmailLogin'}
@@ -113,7 +112,6 @@ const Login = () => {
                 <br/>
             </form>
         </div>
-        </body>
 
     );
 };
