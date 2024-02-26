@@ -2,6 +2,7 @@ package initializers
 
 import (
 	"fmt"
+	"leos-tech/backend/models"
 	"os"
 
 	"gorm.io/driver/mysql"
@@ -20,4 +21,10 @@ func ConnectToDatabase() {
 	if err != nil {
 		fmt.Println("failed to connect to db")
 	}
+}
+
+func SyncDB() {
+
+	DB.AutoMigrate(&models.Post{})
+
 }
