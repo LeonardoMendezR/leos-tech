@@ -7,7 +7,7 @@ const Nav = () => {
         <nav>
             <div className="externDiv">
                 <div className="logoDiv">
-                    <img className="image" src="../../imagenes/logoLeo.jpg"/>
+                    <img className="image" src="../../imagenes/leostech.png"/>
                 </div>
                 <div className="name">
                     <h2> LEOS' TECH</h2>
