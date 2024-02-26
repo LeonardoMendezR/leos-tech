@@ -20,8 +20,7 @@ func mapUrls() {
 
 	router.GET("/servicio", controller.GetServicios)
 	router.GET("/servicio/:id", controller.GetServicioById)
-	router.DELETE("/service/:id", controller.DeleteServicioById)
-
+	router.DELETE("/servicio/:id", controller.DeleteServicioById)
 
 	
 	log.Info("Finishing mappings configurations")
