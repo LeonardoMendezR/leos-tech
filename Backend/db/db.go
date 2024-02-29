@@ -16,7 +16,7 @@ var (
 
 func init() {
 	// DB Connections Paramters
-	DBName := "leos tech"
+	DBName := "leosTech"
 	DBUser := "root"
 	DBPass := "pass"
 	DBHost := "database"
@@ -40,6 +40,8 @@ func StartDbEngine() {
 
 	Db.AutoMigrate(&model.User{})
 	Db.AutoMigrate(&model.Image{})
+	Db.AutoMigrate(&model.Portfolio{})
+	Db.AutoMigrate(&model.Servicio{})
 
 	log.Info("Finishing Migration Database Tables")
 }

@@ -40,7 +40,7 @@ const Login = () => {
 
             try {
                 // Envía la respuesta al backend (Postman, básicamente)
-                const response = await fetch('http://localhost:8080/login', {
+                const response = await fetch('http://localhost:8090/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -60,12 +60,10 @@ const Login = () => {
                     // Si el usuario existe
                     // El usuario está en la base de datos
                     console.log('Usuario válido');
-
                     Cookies.set('user_id', response.id_user)
                     Cookies.set('email', email)
                     Cookies.set('token', response.token)
                     Cookies.set('type', response.tipo)
-                    navigate('/home');
                     window.location.reload();
                 }
             } catch (error) {

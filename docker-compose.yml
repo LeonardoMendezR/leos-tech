@@ -1,14 +1,15 @@
 version: '3'
 
 services:
+
   database:
     build: ./Database
     environment:
-      MYSQL_DATABASE: leos tech
+      MYSQL_DATABASE: leosTech
       MYSQL_ROOT_PASSWORD: pass
       MYSQL_TCP_PORT: 3307
     ports:
-      - "3307:3306"
+      - "3307:3307"
     expose:
       - 3307
     volumes:
@@ -17,6 +18,8 @@ services:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root"]
       timeout: 20s
       retries: 10
+    networks:
+        - leosTech
   frontend:
     build: ./Frontend
     depends_on:
@@ -24,6 +27,9 @@ services:
         condition: service_healthy
     ports:
       - "5173:5173"
+    networks:
+      - leosTech
+
   backend:
     build: ./Backend
     depends_on:
@@ -31,3 +37,7 @@ services:
         condition: service_healthy
     ports:
       - "8090:8090"
+
+networks:
+  leosTech:
+    driver: bridge
