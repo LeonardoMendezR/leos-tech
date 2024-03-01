@@ -15,33 +15,34 @@ var (
 )
 
 func init() {
-	// DB Connections Paramters
+	// DB Connections Parameters
 	DBName := "leosTech"
 	DBUser := "root"
 	DBPass := "pass"
-	DBHost := "database"
+	DBHost := "database" // Deberías asegurarte de que este nombre sea correcto según tu configuración de Docker Compose
 
+	// Intenta conectar a la base de datos con los parámetros proporcionados
 	Db, err = gorm.Open("mysql", DBUser+":"+DBPass+"@tcp("+DBHost+":3307)/"+DBName+"?charset=utf8&parseTime=True")
 
 	if err != nil {
-		log.Info("Connection Failed to Open")
+		log.Info("Error al abrir la conexión a la base de datos")
 		log.Fatal(err)
 	} else {
-		log.Info("Connection Established")
+		log.Info("Conexión establecida con éxito")
 	}
 
-	// Add all clients here
+	// Agrega todos los clientes aquí
 	client.Db = Db
 
 }
 
 func StartDbEngine() {
-	// Migrate all model classes
+	// Migrar todas las clases de modelo
 
 	Db.AutoMigrate(&model.User{})
 	Db.AutoMigrate(&model.Image{})
 	Db.AutoMigrate(&model.Portfolio{})
 	Db.AutoMigrate(&model.Servicio{})
 
-	log.Info("Finishing Migration Database Tables")
+	log.Info("Finalización de la migración de tablas de la base de datos")
 }

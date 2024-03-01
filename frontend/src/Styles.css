@@ -1,0 +1,137 @@
+/*home*/
+.bigTitle {
+    font-size: 2em;
+    text-align: center;
+}
+
+p {
+    font-size: 20px;
+    text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
+
+}
+
+.contenedor {
+    border: 1px solid #415a77;
+    padding: 16px;
+    margin: 16px;
+    text-align: center;
+    background-color: #415a77;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: height 0.5s ease;
+    border-radius: 40px;
+}
+
+.expandido {
+    height: 50%;
+}
+
+.title {
+    background-color: #415a77;
+    padding: 10px;
+    text-align: center;
+    color: #e0e1dd;
+
+}
+
+.contenido {
+    background-color: #778da9;
+    padding: 10px;
+    color: #e0e1dd;
+    border-radius: 40px;
+    text-shadow: 1px 1px 2px black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: #e0e1dd;
+}
+
+.body-div {
+    height: 700px;
+    background-color: #e0e1dd;
+    color: #000000;
+    margin-bottom: 10%; /* Ajusta según la altura de tu footer */
+    @media (orientation: portrait) {
+        margin-bottom: 160%;
+    }
+}
+
+/*service*/
+.my-service-container {
+    display: flex; /* Cambia a flex para que los elementos se coloquen en línea */
+    justify-content: space-around; /* Ajusta según tus necesidades de espaciado */
+    align-items: center; /* Ajusta según tus necesidades de alineación vertical */
+    flex-wrap: wrap; /* Permite el ajuste automático a la siguiente línea */
+}
+
+.serviceContainer {
+    flex: 1;
+    margin: 2%;
+    padding-top: 2%;
+    padding-left: 2%;
+    @media (orientation: portrait) {
+        margin-left: 12%;
+        padding-top: 6%;
+    }
+}
+
+.service-card {
+    border: 1px solid #e0e1dd;
+    border-radius: 8px;
+    padding: 16px;
+    width: 300px;
+    text-align: center;
+    background-color: #415a77;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-header {
+    color: #e0e1dd;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.service-info {
+    margin: 8px 0;
+    color: #e0e1dd;
+}
+/*login*/
+#formLogin, #formRegister {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: grid;
+    align-Items: center;
+    background-color: #415a76;
+    padding: 2rem;
+    border-radius: 40px;
+    width: 30%;
+    box-shadow: 5px 5px 5px 5px rgb(65, 90, 118);
+    color: #ffffff;
+    @media(orientation: portrait){
+        width: 80%;
+    }
+}
+
+#inputImage,
+#inputHotelName, #inputDescription, #inputRooms, #inputStars, #inputPrice, #inputAmenities,
+#inputEmailLogin, #inputPasswordLogin, #inputNameRegister, #inputLastNameRegister, #inputDniRegister,
+#inputEmailRegister, #inputPasswordRegister {
+    margin-Bottom: 10px;
+    padding: 15px;
+    background-color: #415a76;
+    border: 1px solid;
+    border-radius: 15px;
+    font-size: 15px;
+}
+
+#botonLogin {
+    background-Color: #778da9;
+    color: #ffffff;
+    padding: 8px 16px;
+    text-shadow: 1px 1px 2px black;
+}
