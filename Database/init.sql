@@ -15,7 +15,7 @@ CREATE TABLE `users`
     `Role`     VARCHAR(10)  NOT NULL
 );
 
-INSERT INTO user (Name, LastName, Dni, Email, Password, Role)
+INSERT INTO users (Name, LastName, Dni, Email, Password, Role)
 VALUES ('Leonardo Tomas', 'Mendez Rodriguez', 43998614, 'leomendez@gmail.com',
         '$2a$10$EwlJ7rPRJPSpKtpsXchYoOs0.YpG7KAlfr42RmjECDFMelR9ICFQW', 'Admin'), -- Password: admin
        ('Leonardo Carmelo', 'Morabito', 44195695, 'leonardomorabito02@gmail.com',
@@ -34,7 +34,7 @@ CREATE TABLE `images`
     `Id`          bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `Path`        VARCHAR(300) NOT NULL,
     `PortfolioId` bigint(20),
-    FOREIGN KEY (PortfolioId) REFERENCES portfolio (Id)
+    FOREIGN KEY (PortfolioId) REFERENCES portfolios (Id)
 );
 
 CREATE TABLE `servicios`
