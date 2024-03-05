@@ -62,7 +62,7 @@ func GetUsers(c *gin.Context) {
 
 func UserLogin(c *gin.Context) {
 	var loginDto dto.UserDto
-
+	log.Debug("login dto controller", loginDto)
 	err := c.BindJSON(&loginDto)
 	if err != nil {
 		log.Error(err.Error())
@@ -96,17 +96,16 @@ func UserLogin(c *gin.Context) {
 
 func DeleteUserById(c *gin.Context) {
 
-    _, err := strconv.Atoi(c.Param("id"))
-    
+	_, err := strconv.Atoi(c.Param("id"))
+
 	log.Debug("[controller] id de usuario a borrar: " + c.Param("id"))
-    if err != nil {
-        c.JSON(http.StatusBadRequest, gin.H{"error": "No se pudo eliminar el usuario"})
-        return
-    }
-    c.JSON(http.StatusOK, gin.H{"message": "El usuario fue eliminado correctamente"})
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "No se pudo eliminar el usuario"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "El usuario fue eliminado correctamente"})
 
 }
-
 
 func generateToken(loginDto dto.UserDto) (string, error) {
 	token := jwt.New(jwt.SigningMethodHS256)

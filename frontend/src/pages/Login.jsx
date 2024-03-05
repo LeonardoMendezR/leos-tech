@@ -40,36 +40,27 @@ const Login = () => {
 
             try {
                 // Envía la respuesta al backend (Postman, básicamente)
-                const response = await fetch('http://localhost:8080/login', {
+                const response = await fetch('http://localhost:8090/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({email, password}),
-                }).then((response) => {
-                    console.log(response.status)
-                    if (response.ok) {
-                        console.log("hizo el return")
-                        return response.json();
-                    } else {
-                        openAlert1();
-                        console.log("hizo el error")
-                    }
                 });
-                if (response.id_user) {
-                    // Si el usuario existe
-                    // El usuario está en la base de datos
+                if (response.status ===202) {
                     console.log('Usuario válido');
-
-                    Cookies.set('user_id', response.id_user)
+                    Cookies.set('user_id', response.user)
                     Cookies.set('email', email)
                     Cookies.set('token', response.token)
-                    Cookies.set('type', response.tipo)
-                    navigate('/home');
-                    window.location.reload();
+                   // window.location.reload();
+                    return response.json();
+                }
+                else{
+                    openAlert1();
+                    console.log("hizo el error")
                 }
             } catch (error) {
-                Cookies.set('user_id', "-1")
+               // Cookies.set('user_id', "-1")
 
                 console.log('Error al realizar la solicitud al backend:', error);
             }
