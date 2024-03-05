@@ -11,17 +11,18 @@ var Db *gorm.DB
 
 func InsertUser(user model.User) model.User {
 
+	log.Debug("User to insert:", user)
 	result := Db.Create(&user)
+	log.Debug("User inserted result:", result)
 
 	if result.Error != nil {
-		log.Error("Failed to insert user.")
+		log.Errorf("Failed to insert user: %v", result.Error)
 		return user
 	}
 
 	log.Debug("User created:", user.Id)
 	return user
 }
-
 
 func DeleteUserById(id int) error {
 	var user model.User

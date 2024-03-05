@@ -2,6 +2,7 @@ package service
 
 import (
 	"errors"
+	log "github.com/sirupsen/logrus"
 	"golang.org/x/crypto/bcrypt"
 	"project/client"
 	"project/dto"
@@ -17,6 +18,7 @@ type userServiceInterface interface {
 	UserLogin(loginDto dto.UserDto) (dto.UserDto, error)
 	DeleteUserById(id int) error
 }
+
 var UserService userServiceInterface
 
 func init() {
@@ -87,7 +89,7 @@ func (s *userService) GetUsers() (dto.UsersDto, error) {
 
 		usersDto = append(usersDto, userDto)
 	}
-
+	log.Debug("service getUsers", usersDto)
 	return usersDto, nil
 }
 
@@ -116,10 +118,10 @@ func (s *userService) UserLogin(loginDto dto.UserDto) (dto.UserDto, error) {
 	return userDto, nil
 }
 func (s *userService) DeleteUserById(id int) error {
-    // Llama al cliente para eliminar el usuario por su ID
-    err := client.DeleteUserById(id)
-    if err != nil {
-        return err
-    }
-    return nil
+	// Llama al cliente para eliminar el usuario por su ID
+	err := client.DeleteUserById(id)
+	if err != nil {
+		return err
+	}
+	return nil
 }

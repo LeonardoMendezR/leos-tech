@@ -51,6 +51,7 @@ func GetUsers(c *gin.Context) {
 	var usersDto dto.UsersDto
 
 	usersDto, err := service.UserService.GetUsers()
+	log.Debug("controller getUsers", usersDto)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
