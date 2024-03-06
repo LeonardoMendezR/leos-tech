@@ -21,7 +21,7 @@ services:
     networks:
         - leosTech
   frontend:
-    build: ./Frontend
+    build: ./frontend
     depends_on:
       database:
         condition: service_healthy
