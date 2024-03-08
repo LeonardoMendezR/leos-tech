@@ -51,7 +51,6 @@ func GetUsers(c *gin.Context) {
 	var usersDto dto.UsersDto
 
 	usersDto, err := service.UserService.GetUsers()
-	log.Debug("controller getUsers", usersDto)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -63,7 +62,7 @@ func GetUsers(c *gin.Context) {
 
 func UserLogin(c *gin.Context) {
 	var loginDto dto.UserDto
-	log.Debug("login dto controller", loginDto)
+
 	err := c.BindJSON(&loginDto)
 	if err != nil {
 		log.Error(err.Error())
@@ -93,23 +92,6 @@ func UserLogin(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusAccepted, response)
-}
-
-func DeleteUserById(c *gin.Context) {
-	id, err := strconv.Atoi(c.Param("id"))
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "ID de usuario no válido"})
-		return
-	}
-
-	err = service.UserService.DeleteUserById(id)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "No se pudo eliminar el usuario"})
-		return
-	}
-
-	log.Debug("[controller] id de usuario a borrar:", c.Param("id"))
-	c.JSON(http.StatusOK, gin.H{"message": "El usuario fue eliminado correctamente"})
 }
 
 func generateToken(loginDto dto.UserDto) (string, error) {

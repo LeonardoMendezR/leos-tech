@@ -2,8 +2,6 @@ package service
 
 import (
 	"errors"
-	"fmt"
-	log "github.com/sirupsen/logrus"
 	"golang.org/x/crypto/bcrypt"
 	"project/client"
 	"project/dto"
@@ -17,7 +15,6 @@ type userServiceInterface interface {
 	GetUserById(id int) (dto.UserDto, error)
 	GetUsers() (dto.UsersDto, error)
 	UserLogin(loginDto dto.UserDto) (dto.UserDto, error)
-	DeleteUserById(id int) error
 }
 
 var UserService userServiceInterface
@@ -34,10 +31,7 @@ func (s *userService) InsertUser(userDto dto.UserDto) (dto.UserDto, error) {
 	if err != nil {
 		return userDto, err
 	}
-	if user.Id == 0 {
-		return userDto, errors.New("error creating user")
-	}
-	userDto.Id = user.Id
+
 	user.Name = userDto.Name
 	user.LastName = userDto.LastName
 	user.Dni = userDto.Dni
@@ -46,6 +40,14 @@ func (s *userService) InsertUser(userDto dto.UserDto) (dto.UserDto, error) {
 	user.Role = "Customer"
 
 	user = client.InsertUser(user)
+
+	userDto.Id = user.Id
+	userDto.Role = user.Role
+	userDto.Password = user.Password
+
+	if user.Id == 0 {
+		return userDto, errors.New("error creating user")
+	}
 
 	return userDto, nil
 }
@@ -85,7 +87,7 @@ func (s *userService) GetUsers() (dto.UsersDto, error) {
 
 		usersDto = append(usersDto, userDto)
 	}
-	log.Debug("service getUsers", usersDto)
+
 	return usersDto, nil
 }
 
@@ -111,14 +113,5 @@ func (s *userService) UserLogin(loginDto dto.UserDto) (dto.UserDto, error) {
 	userDto.Dni = user.Dni
 	userDto.Email = user.Email
 	userDto.Role = user.Role
-
 	return userDto, nil
-}
-func (s *userService) DeleteUserById(id int) error {
-	// Llama al cliente para eliminar el usuario por su ID
-	if err := client.DeleteUserById(id); err != nil {
-		return fmt.Errorf("error al eliminar usuario por ID %d: %w", id, err)
-	}
-
-	return nil
 }

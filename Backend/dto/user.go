@@ -4,9 +4,9 @@ type UserDto struct {
 	Id       int    `json:"id"`
 	Name     string `json:"name"`
 	LastName string `json:"last_name"`
-	Dni      int    `json:"dni"`
+	Dni      string `json:"dni"`
 	Email    string `json:"email"`
-	Password string `json:"password"`
+	Password string `json:"password,omitempty"`
 	Role     string `json:"role"`
 }
 
