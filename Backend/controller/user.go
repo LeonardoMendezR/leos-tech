@@ -96,16 +96,20 @@ func UserLogin(c *gin.Context) {
 }
 
 func DeleteUserById(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID de usuario no válido"})
+		return
+	}
 
-	_, err := strconv.Atoi(c.Param("id"))
-
-	log.Debug("[controller] id de usuario a borrar: " + c.Param("id"))
+	err = service.UserService.DeleteUserById(id)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "No se pudo eliminar el usuario"})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"message": "El usuario fue eliminado correctamente"})
 
+	log.Debug("[controller] id de usuario a borrar:", c.Param("id"))
+	c.JSON(http.StatusOK, gin.H{"message": "El usuario fue eliminado correctamente"})
 }
 
 func generateToken(loginDto dto.UserDto) (string, error) {

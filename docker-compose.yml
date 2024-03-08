@@ -32,7 +32,6 @@ services:
 
   backend:
     build: ./Backend
-    image: leos-tech-backend
     depends_on:
       database:
         condition: service_healthy
