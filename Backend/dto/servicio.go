@@ -1,9 +1,9 @@
 package dto
 
 type ServicioDto struct {
-	Id       int    `Int:"primaryKey"`
-	NameTech string `string:"nametechService"`
-	Area     string `string:"areaService"`
+	Id       int    `json:"primaryKey"`
+	NameTech string `json:"nametechService"`
+	Area     string `json:"areaService"`
 }
 
 type ServiciosDto []ServicioDto

@@ -1,12 +1,12 @@
 
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS users ( /* 0: client, 1: admin*/
 	id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(300) NOT NULL,
     last_name VARCHAR(300) NOT NULL,
     dni bigint(20) NOT NULL,
     email VARCHAR(300) NOT NULL UNIQUE,
     password VARCHAR(300) NOT NULL,
-    role VARCHAR(10) NOT NULL
+    role boolean NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS portfolios
@@ -34,4 +34,4 @@ CREATE TABLE IF NOT EXISTS servicios
 );
 
 INSERT INTO users (name, last_name, dni, email, password, role) VALUES
-('Leonardo Tomas', 'Mendez Rodriguez', '43998614', 'leomendez@gmail.com', '$2a$10$EwlJ7rPRJPSpKtpsXchYoOs0.YpG7KAlfr42RmjECDFMelR9ICFQW', 'Admin');
+('Leonardo Tomas', 'Mendez Rodriguez', '43998614', 'leomendez@gmail.com', '$2a$10$EwlJ7rPRJPSpKtpsXchYoOs0.YpG7KAlfr42RmjECDFMelR9ICFQW', '1');

@@ -37,7 +37,7 @@ func (s *userService) InsertUser(userDto dto.UserDto) (dto.UserDto, error) {
 	user.Dni = userDto.Dni
 	user.Email = userDto.Email
 	user.Password = string(encryptedPassword)
-	user.Role = "Customer"
+	user.Role = false
 
 	user = client.InsertUser(user)
 

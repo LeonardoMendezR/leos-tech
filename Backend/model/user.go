@@ -7,7 +7,7 @@ type User struct {
 	Dni      int    `gorm:"type:int; not null"`
 	Email    string `gorm:"type:varchar(300); unique"`
 	Password string `gorm:"type:varchar(300); not null"`
-	Role     string `gorm:"type:varchar(10); not null"`
+	Role     bool   `gorm:"type:boolean; not null"`
 }
 
 type Users []User

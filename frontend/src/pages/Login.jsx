@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Cookies from 'js-cookie';
 import CustomModal from '../components/CustomModal.jsx';
 import "../Styles.css"
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState(''); // Se inicializan las variables vacías
@@ -9,19 +10,32 @@ const Login = () => {
     let [emptyRegister] = useState(false);
     const [showAlert1, setShowAlert1] = useState(false);
     const [showAlert2, setShowAlert2] = useState(false);
-
+    const navigate = useNavigate();
     const openAlert1 = () => {
         setShowAlert1(true);
+        Cookies.set('user_id', "-1")
+        Cookies.set('user_id', "")
+        Cookies.set('email', "")
+        Cookies.set('token', "")
     };
     const closeAlert1 = () => {
         setShowAlert1(false);
     };
     const openAlert2 = () => {
         setShowAlert2(true);
+        Cookies.set('user_id', "-1")
+        Cookies.set('user_id', "")
+        Cookies.set('email', "")
+        Cookies.set('token', "")
     };
     const closeAlert2 = () => {
         setShowAlert2(false);
     };
+    function navigateTo(responseData){
+        if (responseData.user.role){
+            navigate("/dashboardAdmin")
+        }
+    }
     const handleSubmit = async (e) => {
         e.preventDefault(); // Para que no recargue la página
         if (email === '') {
@@ -53,16 +67,17 @@ const Login = () => {
                     Cookies.set('user_id', responseData.user.id)
                     Cookies.set('email', email)
                     Cookies.set('token', responseData.token)
-                   // window.location.reload();
-                    return response.json();
+                    navigateTo(responseData);
                 }
                 else{
                     openAlert1();
                     console.log("hizo el error")
                 }
             } catch (error) {
-               // Cookies.set('user_id', "-1")
-
+                Cookies.set('user_id', "-1")
+                Cookies.set('user_id', "")
+                Cookies.set('email', "")
+                Cookies.set('token', "")
                 console.log('Error al realizar la solicitud al backend:', error);
             }
         } else {

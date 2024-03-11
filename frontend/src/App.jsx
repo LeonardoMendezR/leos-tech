@@ -5,6 +5,10 @@ import Portfolio from './pages/Portfolio.jsx';
 import Service from "./pages/Service.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./pages/Login.jsx";
+import DashboardAdmin from "./pages/DashboardAdmin.jsx";
+import EditUsers from "./pages/EditUsers.jsx";
+import EditServices from "./pages/EditServices.jsx";
+import EditPortfolio from "./pages/EditPortfolio.jsx";
 
 
 const App = () => {
@@ -18,8 +22,12 @@ const App = () => {
                     <Route path="/" element={<Home/>}/>
                     <Route path="/home" element={<Home/>}/>
                     <Route path="/login" element={<Login/>}/>
-                    <Route path="/Portfolio" element={<Portfolio/>}/>
-                    <Route path="/Service" element={<Service/>}/>
+                    <Route path="/portfolio" element={<Portfolio/>}/>
+                    <Route path="/service" element={<Service/>}/>
+                    <Route path="/dashboardAdmin" element={<DashboardAdmin/>}/>
+                    <Route path="/dashboardAdmin/editusers" element={<EditUsers/>}/>
+                    <Route path="/dashboardAdmin/editServices" element={<EditServices/>}/>
+                    <Route path="/dashboardAdmin/editPortfolio" element={<EditPortfolio/>}/>
                 </Routes>
                 <Footer/>
             </Router>
