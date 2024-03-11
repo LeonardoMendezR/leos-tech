@@ -49,9 +49,10 @@ const Login = () => {
                 });
                 if (response.status ===202) {
                     console.log('Usuario válido');
-                    Cookies.set('user_id', response.user)
+                    const responseData = await response.json();
+                    Cookies.set('user_id', responseData.user.id)
                     Cookies.set('email', email)
-                    Cookies.set('token', response.token)
+                    Cookies.set('token', responseData.token)
                    // window.location.reload();
                     return response.json();
                 }
