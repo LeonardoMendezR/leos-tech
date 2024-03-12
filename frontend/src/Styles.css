@@ -135,7 +135,7 @@ body {
     padding: 8px 16px;
     text-shadow: 1px 1px 2px black;
 }
-/*EditUsers*/
+/*EditUser, service, portolio*/
 .Container {
     display: flex;
     flex-wrap: wrap;
@@ -154,25 +154,25 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.hotelCard h2 {
+.Card h2 {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #0E8388;
 }
 
-.hotelCard img {
+.Card img {
     width: 100%;
     height: auto;
     margin-bottom: 10px;
     cursor: pointer;
 }
 
-.hotelCard p {
+.Card p {
     margin-bottom: 5px;
     color: #666;
 }
 
-.hotelCard button {
+.Card button {
     background-color: #007f7f;
     color: white;
     border: none;
@@ -182,7 +182,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.hotelCard button:hover {
+.Card button:hover {
     background-color: #005f5f;
 }
 
@@ -197,7 +197,7 @@ body {
     margin-top: 10%;
 }
 
-#noHotels {
+.noFetch {
     text-align: center;
     align-content: center;
 }

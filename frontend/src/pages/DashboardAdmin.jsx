@@ -11,7 +11,7 @@ const DashboardAdmin = () => {
             <div className="serviceContainer">
                 <div className="service-card">
                     <div className="service-header">
-                        <Link to="/dashboardAdmin/editUsers">
+                        <Link to="/dashboardAdmin/showUsers">
                             Editar usuarios
                         </Link>
                     </div>
