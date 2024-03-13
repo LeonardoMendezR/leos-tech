@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
-import CustomModal from "../components/CustomModal.jsx";
+import {useNavigate} from 'react-router-dom';
 import '../Styles.css';
 
 const EditUser = () => {
@@ -10,13 +9,11 @@ const EditUser = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const token = Cookies.get('token');
     const client_id = Cookies.get('client_id');
-    const [showAlert1, setShowAlert1] = useState(false);
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
                 if (!client_id) {
-                    openAlert1();
                     return;
                 }
                 const response = await fetch(`http://localhost:8090/user/${client_id}`, {
@@ -61,57 +58,47 @@ const EditUser = () => {
     };
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        const newValue = name === 'role' ? value === 'true' : value;
+        const { name, value, type, checked } = e.target;
+        const newValue = type === 'checkbox' ? checked : value;
         setUser(prevUser => ({
             ...prevUser,
-            [name]: value
+            [name]: type === 'number' ? parseInt(newValue) : newValue
         }));
-    };
-
-    const openAlert1 = () => {
-        setShowAlert1(true);
-    };
-
-    const closeAlert1 = () => {
-        setShowAlert1(false);
-        navigate('/login');
     };
 
     return (
         <div>
-            <CustomModal
-                showModal={showAlert1}
-                closeModal={closeAlert1}
-                content="You must log in to make a reservation"
-            />
             {user ? (
                 <div>
-                    <h1>Edit User</h1>
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <label>Name:</label>
-                            <input type="text" name="name" value={user.name} onChange={handleInputChange} />
+                    <div className="Container">
+                        <div className="Card">
+                            <h2>Edit User</h2>
+                            <form onSubmit={handleSubmit}>
+                                <div>
+                                    <label>Name: </label>
+                                    <input type="text" name="name" value={user.name} onChange={handleInputChange}/>
+                                </div>
+                                <div>
+                                    <label>Last Name: </label>
+                                    <input type="text" name="last_name" value={user.last_name} onChange={handleInputChange}/>
+                                </div>
+                                <div>
+                                    <label>DNI: </label>
+                                    <input type="number" name="dni" value={user.dni} onChange={handleInputChange}/>
+                                </div>
+                                <div>
+                                    <label>Email: </label>
+                                    <input type="email" name="email" value={user.email} onChange={handleInputChange}/>
+                                </div>
+                                <div>
+                                    <label>Admin: </label>
+                                    <input type="checkbox" name="role" checked={user.role} onChange={handleInputChange}/>
+                                </div>
+                                <button type="submit">Save Changes</button>
+                                {errorMessage && <p className="errorMessage">{errorMessage}</p>}
+                            </form>
                         </div>
-                        <div>
-                            <label>Last Name:</label>
-                            <input type="text" name="last_name" value={user.last_name} onChange={handleInputChange} />
-                        </div>
-                        <div>
-                            <label>DNI:</label>
-                            <input type="text" name="dni" value={user.dni} onChange={handleInputChange} />
-                        </div>
-                        <div>
-                            <label>Email:</label>
-                            <input type="email" name="email" value={user.email} onChange={handleInputChange} />
-                        </div>
-                        <div>
-                            <label>Role:</label>
-                            <input type="checkbox" name="role" value={user.role} onChange={handleInputChange} />
-                        </div>
-                        <button type="submit">Save Changes</button>
-                        {errorMessage && <p className="errorMessage">{errorMessage}</p>}
-                    </form>
+                    </div>
                 </div>
             ) : (
                 <p>Error al cargar al usuario :(</p>
