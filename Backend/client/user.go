@@ -22,11 +22,43 @@ func InsertUser(user model.User) model.User {
 	return user
 }
 
+func UpdateUser(user model.User) error {
+	// Obtener el usuario existente de la base de datos por su ID
+	var existingUser model.User
+	result := Db.First(&existingUser, user.Id)
+	if result.Error != nil {
+		log.Error("Failed to find user:", result.Error)
+		return result.Error
+	}
+
+	// Actualizar los campos del usuario existente con los datos del usuario pasado como argumento
+	existingUser.Name = user.Name
+	existingUser.LastName = user.LastName
+	existingUser.Dni = user.Dni
+	existingUser.Email = user.Email
+	existingUser.Password = user.Password
+	existingUser.Role = user.Role
+
+	// Guardar los cambios en la base de datos
+	result = Db.Save(&existingUser)
+	if result.Error != nil {
+		log.Error("Failed to update user:", result.Error)
+		return result.Error
+	}
+
+	log.Debug("User updated:", existingUser.Id)
+	return nil
+}
+
 func GetUserById(id int) model.User {
 	var user model.User
 
-	Db.Where("id = ?", id).First(&user)
-	log.Debug("User: ", user)
+	result := Db.Where("id = ?", id).First(&user)
+	if result.Error != nil {
+		log.Debug("failed to find user ", id)
+	} else {
+		log.Debug("User: ", user)
+	}
 
 	return user
 }

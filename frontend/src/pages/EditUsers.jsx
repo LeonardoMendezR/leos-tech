@@ -1,45 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CustomModal from "../components/CustomModal.jsx";
 import '../Styles.css';
 
 const EditUser = () => {
-    const { id } = Cookies.get('client_id');
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const token = Cookies.get('token');
+    const client_id = Cookies.get('client_id');
     const [showAlert1, setShowAlert1] = useState(false);
-    const openAlert1 = () => {
-        setShowAlert1(true);
-    };
-    const closeAlert1 = () => {
-        setShowAlert1(false);
-        navigate('/login');
-    };
 
-    const fetchUser = async () => {
-        try {
-            const response = await fetch(`http://localhost:8090/user/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                if (!client_id) {
+                    openAlert1();
+                    return;
                 }
-            });
-            if (!response.status === 200) {
-                throw new Error('Failed to fetch user');
+                const response = await fetch(`http://localhost:8090/user/${client_id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user');
+                }
+                const userData = await response.json();
+                setUser(userData);
+            } catch (error) {
+                console.error('Error fetching user:', error);
             }
-            const userData = await response.json();
-            setUser(userData);
-        } catch (error) {
-            console.error('Error fetching user:', error);
-        }
-    };
+        };
+        fetchUser();
+    }, [client_id, token]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:8090/user/${id}`, {
+            const response = await fetch(`http://localhost:8090/user/${client_id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -60,9 +60,23 @@ const EditUser = () => {
         }
     };
 
-    useEffect(() => {
-        fetchUser();
-    }, [id]);
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        const newValue = name === 'role' ? value === 'true' : value;
+        setUser(prevUser => ({
+            ...prevUser,
+            [name]: value
+        }));
+    };
+
+    const openAlert1 = () => {
+        setShowAlert1(true);
+    };
+
+    const closeAlert1 = () => {
+        setShowAlert1(false);
+        navigate('/login');
+    };
 
     return (
         <div>
@@ -77,30 +91,30 @@ const EditUser = () => {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <label>Name:</label>
-                            <input type="text" name="name" value={user.name} onChange={(e) => setUser({ ...user, name: e.target.value })} />
+                            <input type="text" name="name" value={user.name} onChange={handleInputChange} />
                         </div>
                         <div>
                             <label>Last Name:</label>
-                            <input type="text" name="last_name" value={user.last_name} onChange={(e) => setUser({ ...user, last_name: e.target.value })} />
+                            <input type="text" name="last_name" value={user.last_name} onChange={handleInputChange} />
                         </div>
                         <div>
                             <label>DNI:</label>
-                            <input type="text" name="dni" value={user.dni} onChange={(e) => setUser({ ...user, dni: e.target.value })} />
+                            <input type="text" name="dni" value={user.dni} onChange={handleInputChange} />
                         </div>
                         <div>
                             <label>Email:</label>
-                            <input type="email" name="email" value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} />
+                            <input type="email" name="email" value={user.email} onChange={handleInputChange} />
                         </div>
                         <div>
                             <label>Role:</label>
-                            <input type="text" name="role" value={user.role} onChange={(e) => setUser({ ...user, role: e.target.value })} />
+                            <input type="checkbox" name="role" value={user.role} onChange={handleInputChange} />
                         </div>
                         <button type="submit">Save Changes</button>
                         {errorMessage && <p className="errorMessage">{errorMessage}</p>}
                     </form>
                 </div>
             ) : (
-                <p>Loading...</p>
+                <p>Error al cargar al usuario :(</p>
             )}
         </div>
     );

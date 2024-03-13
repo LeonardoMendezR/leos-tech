@@ -12,6 +12,7 @@ func mapUrls() {
 	router.POST("/user", controller.InsertUser)
 	router.GET("/user/:id", controller.GetUserById)
 	router.GET("/user", controller.GetUsers)
+	router.PUT("/user/:id", controller.UpdateUser)
 
 	router.GET("/image/:id", controller.GetImageById)
 

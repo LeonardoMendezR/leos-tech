@@ -59,6 +59,28 @@ func GetUsers(c *gin.Context) {
 
 	c.JSON(http.StatusOK, usersDto)
 }
+func UpdateUser(c *gin.Context) {
+	var userDto dto.UserDto
+	err := c.BindJSON(&userDto)
+	if err != nil {
+		log.Error(err.Error())
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if userDto.Id <= 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid user ID"})
+		return
+	}
+
+	userDto, err = service.UserService.UpdateUser(userDto, userDto.Id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusAccepted, userDto)
+}
 
 func UserLogin(c *gin.Context) {
 	var loginDto dto.UserDto
