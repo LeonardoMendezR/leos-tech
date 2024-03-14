@@ -10,12 +10,31 @@ const EditUser = () => {
     const token = Cookies.get('token');
     const user_id = Cookies.get('user_id');
     const client_id = Cookies.get('client_id');
-
     useEffect(() => {
-        if (!user_id || user_id === -1 || user_id === 0 || !token) {
-            navigate("/");
+        const fetchUser = async () => {
+            try {
+                const response = await fetch(`http://localhost:8090/user/${user_id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch admin');
+                }
+                const userData = await response.json();
+                if (!userData.role) {
+                    navigate("/")
+                }
 
-        }
+            } catch (error) {
+                console.error('Error fetching user:', error);
+                navigate("/");
+            }
+
+        };
+        fetchUser();
+    }, [user_id, token]);
+    useEffect(() => {
         const fetchUser = async () => {
             try {
                 if (!client_id) {
@@ -63,7 +82,7 @@ const EditUser = () => {
     };
 
     const handleInputChange = (e) => {
-        const { name, value, type, checked } = e.target;
+        const {name, value, type, checked} = e.target;
         const newValue = type === 'checkbox' ? checked : value;
         setUser(prevUser => ({
             ...prevUser,
@@ -85,7 +104,8 @@ const EditUser = () => {
                                 </div>
                                 <div>
                                     <label>Last Name: </label>
-                                    <input type="text" name="last_name" value={user.last_name} onChange={handleInputChange}/>
+                                    <input type="text" name="last_name" value={user.last_name}
+                                           onChange={handleInputChange}/>
                                 </div>
                                 <div>
                                     <label>DNI: </label>
@@ -97,9 +117,10 @@ const EditUser = () => {
                                 </div>
                                 <div>
                                     <label>Admin: </label>
-                                    <input type="checkbox" name="role" checked={user.role} onChange={handleInputChange}/>
+                                    <input type="checkbox" name="role" checked={user.role}
+                                           onChange={handleInputChange}/>
                                 </div>
-                                <button type="submit">Save Changes</button>
+                                <button type="submit">Guardar cambios</button>
                                 {errorMessage && <p className="errorMessage">{errorMessage}</p>}
                             </form>
                         </div>

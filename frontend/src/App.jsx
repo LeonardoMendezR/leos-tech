@@ -18,8 +18,10 @@ const App = () => {
 
         <div className="App">
             <Router>
+
                 <Nav/>
                 <Routes>
+
                     <Route path="/" element={<Home/>}/>
                     <Route path="/home" element={<Home/>}/>
                     <Route path="/login" element={<Login/>}/>
@@ -30,8 +32,10 @@ const App = () => {
                     <Route path="/dashboardAdmin/showUsers/:id" element={<EditUsers/>}/>
                     <Route path="/dashboardAdmin/editServices" element={<EditServices/>}/>
                     <Route path="/dashboardAdmin/editPortfolio" element={<EditPortfolio/>}/>
+
                 </Routes>
                 <Footer/>
+
             </Router>
         </div>
     );

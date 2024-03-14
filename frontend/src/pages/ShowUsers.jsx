@@ -15,9 +15,30 @@ const ShowUsers = () => {
     };
 
     useEffect(() => {
-        if (!user_id || user_id === -1 || user_id === 0 || !token) {
-            navigate("/");
-        }
+        const fetchUser = async () => {
+            try {
+                const response = await fetch(`http://localhost:8090/user/${user_id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch admin');
+                }
+                const userData = await response.json();
+                if (!userData.role) {
+                    navigate("/")
+                }
+
+            } catch (error) {
+                console.error('Error fetching user:', error);
+                navigate("/");
+            }
+
+        };
+        fetchUser();
+    }, [user_id, token]);
+    useEffect(() => {
         const fetchUsers = async () => {
             try {
                 const response = await fetch('http://localhost:8090/user');

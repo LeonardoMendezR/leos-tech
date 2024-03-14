@@ -1,19 +1,40 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import "../Styles.css"
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
+
 
 const DashboardAdmin = () => {
-    const token = Cookies.get("token");
-    const user_id = Cookies.get("user_id");
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
+    const user_id = Cookies.get("user_id")
+    const token = Cookies.get("token")
 
     useEffect(() => {
-        if (!user_id || user_id === -1 || user_id === 0 || !token) {
-            navigate("/");
+        const fetchUser = async () => {
+            try {
+                const response = await fetch(`http://localhost:8090/user/${user_id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch admin');
+                }
+                const userData = await response.json();
+                if (!userData.role) {
+                    navigate("/")
+                }
 
-        }
-    }, []);
+            } catch (error) {
+                console.error('Error fetching user:', error);
+                navigate("/");
+            }
+
+        };
+        fetchUser();
+    }, [user_id, token]);
+
     return (
 
         <div className="my-service-container">

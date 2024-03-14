@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
+import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
 import CustomModal from '../components/CustomModal.jsx';
 import "../Styles.css"
-import {useNavigate} from "react-router-dom";
+
 
 const Login = () => {
     const [email, setEmail] = useState(''); // Se inicializan las variables vacías
@@ -11,6 +12,7 @@ const Login = () => {
     const [showAlert1, setShowAlert1] = useState(false);
     const [showAlert2, setShowAlert2] = useState(false);
     const navigate = useNavigate();
+
     const openAlert1 = () => {
         setShowAlert1(true);
         Cookies.set('user_id', "-1")
@@ -33,11 +35,13 @@ const Login = () => {
     const closeAlert2 = () => {
         setShowAlert2(false);
     };
-    function navigateTo(responseData){
-        if (responseData.user.role){
+
+    function navigateTo(responseData) {
+        if (responseData.user.role) {
             navigate("/dashboardAdmin")
         }
     }
+
     const handleSubmit = async (e) => {
         e.preventDefault(); // Para que no recargue la página
         if (email === '') {
@@ -63,17 +67,17 @@ const Login = () => {
                     },
                     body: JSON.stringify({email, password}),
                 });
-                if (response.status ===202) {
+                if (response.status === 202) {
                     console.log('Usuario válido');
                     const responseData = await response.json();
                     Cookies.set('user_id', responseData.user.id)
                     Cookies.set('email', email)
                     Cookies.set('name', responseData.user.name)
                     Cookies.set('token', responseData.token)
+
                     navigateTo(responseData);
                     window.location.reload()
-                }
-                else{
+                } else {
                     openAlert1();
                     console.log("hizo el error")
                 }
