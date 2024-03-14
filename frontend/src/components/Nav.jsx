@@ -8,6 +8,8 @@ import CustomModal2 from "./CustomModal2.jsx";
 const Nav = () => {
     const navigate = useNavigate();
     const userName = Cookies.get("name");
+    const user_id = Cookies.get("user_id");
+    const token = Cookies.get("token");
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
@@ -38,11 +40,25 @@ const Nav = () => {
         }
     }, []);
     useEffect(() => {
-        const type_user = Cookies.get('type');
-        if (type_user === 'true') {
-            setIsAdmin(true);
-        }
-    }, []);
+        const fetchUser = async () => {
+
+            const response = await fetch(`http://localhost:8090/user/${user_id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Failed to fetch admin');
+            }
+            const userData = await response.json();
+            if (userData.role) {
+                setIsAdmin(true);
+            }
+
+
+        };
+        fetchUser();
+    }, [user_id, token]);
 
 
     return (
@@ -77,18 +93,21 @@ const Nav = () => {
                                     <button id="loginButton" onClick={openAlert}>
                                         {userName ? `Bienvenido, ${userName}` : "Bienvenido"}
                                     </button>
-                                    <Link to="/dashboardAdmin/showUsers">
-                                        <li>Editar usuarios</li>
-                                    </Link>
-
-                                    <Link to="/dashboardAdmin/editServices">
-                                        <li> Editar servicios</li>
-                                    </Link>
-                                    {isAdmin && (
+                                    {isAdmin ? (
                                         <>
+                                            <Link to="/dashboardAdmin/showUsers">
+                                                <li>Editar usuarios</li>
+                                            </Link>
 
+                                            <Link to="/dashboardAdmin/editServices">
+                                                <li> Editar servicios</li>
+                                            </Link>
                                         </>
-                                    )}
+                                    ):
+                                        (
+                                            <></>
+                                        )}
+
                                 </>
                             ) : (
                                 <button id="loginButton" onClick={login}>Iniciar sesión</button>
