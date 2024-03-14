@@ -1,5 +1,5 @@
 import React from 'react';
-import './ComponentsStyles.css'
+import "./ComponentsSyles.css";
 const CustomModal2 = ({ showModal2, closeModal2, closeModal22, content2 }) => {
     return (
         <>

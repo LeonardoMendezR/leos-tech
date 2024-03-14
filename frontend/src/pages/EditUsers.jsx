@@ -8,9 +8,14 @@ const EditUser = () => {
     const [user, setUser] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const token = Cookies.get('token');
+    const user_id = Cookies.get('user_id');
     const client_id = Cookies.get('client_id');
 
     useEffect(() => {
+        if (!user_id || user_id === -1 || user_id === 0 || !token) {
+            navigate("/");
+
+        }
         const fetchUser = async () => {
             try {
                 if (!client_id) {

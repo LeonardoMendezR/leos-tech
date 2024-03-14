@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import '../Styles.css';
 
 const ShowUsers = () => {
     const [users, setUsers] = useState([]);
     const navigate = useNavigate();
+    const token = Cookies.get("token");
+    const user_id = Cookies.get("user_id");
 
     const selectUser = (id) => {
         Cookies.set('client_id', id);
@@ -13,6 +15,9 @@ const ShowUsers = () => {
     };
 
     useEffect(() => {
+        if (!user_id || user_id === -1 || user_id === 0 || !token) {
+            navigate("/");
+        }
         const fetchUsers = async () => {
             try {
                 const response = await fetch('http://localhost:8090/user');
@@ -38,7 +43,7 @@ const ShowUsers = () => {
                             <button onClick={() => selectUser(user.id)}>Ver</button>
                         </div>
                     ))}
-                    <div style={{ height: '100px' }}></div>
+                    <div style={{height: '100px'}}></div>
                 </div>
             ) : (
                 <div className="noFetch">

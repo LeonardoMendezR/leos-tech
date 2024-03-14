@@ -16,6 +16,7 @@ const Login = () => {
         Cookies.set('user_id', "-1")
         Cookies.set('user_id', "")
         Cookies.set('email', "")
+        Cookies.set('name', "")
         Cookies.set('token', "")
     };
     const closeAlert1 = () => {
@@ -26,6 +27,7 @@ const Login = () => {
         Cookies.set('user_id', "-1")
         Cookies.set('user_id', "")
         Cookies.set('email', "")
+        Cookies.set('name', "")
         Cookies.set('token', "")
     };
     const closeAlert2 = () => {
@@ -66,18 +68,21 @@ const Login = () => {
                     const responseData = await response.json();
                     Cookies.set('user_id', responseData.user.id)
                     Cookies.set('email', email)
+                    Cookies.set('name', responseData.user.name)
                     Cookies.set('token', responseData.token)
                     navigateTo(responseData);
+                    window.location.reload()
                 }
                 else{
                     openAlert1();
                     console.log("hizo el error")
                 }
             } catch (error) {
-                Cookies.set('user_id', "-1")
                 Cookies.set('user_id', "")
                 Cookies.set('email', "")
+                Cookies.set('name', "")
                 Cookies.set('token', "")
+                Cookies.set('client_id', "")
                 console.log('Error al realizar la solicitud al backend:', error);
             }
         } else {
