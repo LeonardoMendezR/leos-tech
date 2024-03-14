@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Cookies from 'js-cookie';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import '../Styles.css';
 
 const ShowUsers = () => {
@@ -54,23 +54,36 @@ const ShowUsers = () => {
     }, []);
 
     return (
-        <div className="backSearch">
-            {users.length > 0 ? (
-                <div className="Container">
-                    {users.map((user) => (
-                        <div key={user.id} className="Card">
-                            <h2>{user.name}</h2>
-                            <h2>{user.last_name}</h2>
-                            <button onClick={() => selectUser(user.id)}>Ver</button>
+        <div>
+            <div className="my-service-container">
+                <div className="serviceContainer">
+                    <div className="service-card">
+                        <div className="service-header">
+                            <Link to="/dashboardAdmin/showUsers">
+                                Crear Usuario
+                            </Link>
                         </div>
-                    ))}
-                    <div style={{height: '100px'}}></div>
+                    </div>
                 </div>
-            ) : (
-                <div className="noFetch">
-                    <p>No se encontraron usuarios.</p>
-                </div>
-            )}
+            </div>
+            <div className="backSearch">
+                {users.length > 0 ? (
+                    <div className="Container">
+                        {users.map((user) => (
+                            <div key={user.id} className="Card">
+                                <h2>{user.name}</h2>
+                                <h2>{user.last_name}</h2>
+                                <button onClick={() => selectUser(user.id)}>Ver</button>
+                            </div>
+                        ))}
+                        <div style={{height: '100px'}}></div>
+                    </div>
+                ) : (
+                    <div className="noFetch">
+                        <p>No se encontraron usuarios.</p>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

@@ -42,7 +42,7 @@ const DashboardAdmin = () => {
                 <div className="service-card">
                     <div className="service-header">
                         <Link to="/dashboardAdmin/showUsers">
-                            Editar usuarios
+                            Usuarios
                         </Link>
                     </div>
                 </div>

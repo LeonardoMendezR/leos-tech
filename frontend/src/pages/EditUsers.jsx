@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../Styles.css';
 
 const EditUser = () => {
@@ -10,30 +10,7 @@ const EditUser = () => {
     const token = Cookies.get('token');
     const user_id = Cookies.get('user_id');
     const client_id = Cookies.get('client_id');
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await fetch(`http://localhost:8090/user/${user_id}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch admin');
-                }
-                const userData = await response.json();
-                if (!userData.role) {
-                    navigate("/")
-                }
 
-            } catch (error) {
-                console.error('Error fetching user:', error);
-                navigate("/");
-            }
-
-        };
-        fetchUser();
-    }, [user_id, token]);
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -82,12 +59,34 @@ const EditUser = () => {
     };
 
     const handleInputChange = (e) => {
-        const {name, value, type, checked} = e.target;
+        const { name, value, type, checked } = e.target;
         const newValue = type === 'checkbox' ? checked : value;
         setUser(prevUser => ({
             ...prevUser,
             [name]: type === 'number' ? parseInt(newValue) : newValue
         }));
+    };
+
+    const deleteUser = async () => {
+        try {
+            const response = await fetch(`http://localhost:8090/user/${client_id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if (response.ok) {
+                console.log('User deleted successfully');
+                navigate('/dashboardAdmin/showUsers');
+            } else {
+                const errorData = await response.json();
+                setErrorMessage(errorData.message || "Failed to delete user");
+            }
+        } catch (error) {
+            console.error('Error deleting user:', error);
+            setErrorMessage("Error deleting user. Please try again later.");
+        }
     };
 
     return (
@@ -100,27 +99,26 @@ const EditUser = () => {
                             <form onSubmit={handleSubmit}>
                                 <div>
                                     <label>Name: </label>
-                                    <input type="text" name="name" value={user.name} onChange={handleInputChange}/>
+                                    <input type="text" name="name" value={user.name} onChange={handleInputChange} />
                                 </div>
                                 <div>
                                     <label>Last Name: </label>
-                                    <input type="text" name="last_name" value={user.last_name}
-                                           onChange={handleInputChange}/>
+                                    <input type="text" name="last_name" value={user.last_name} onChange={handleInputChange} />
                                 </div>
                                 <div>
                                     <label>DNI: </label>
-                                    <input type="number" name="dni" value={user.dni} onChange={handleInputChange}/>
+                                    <input type="number" name="dni" value={user.dni} onChange={handleInputChange} />
                                 </div>
                                 <div>
                                     <label>Email: </label>
-                                    <input type="email" name="email" value={user.email} onChange={handleInputChange}/>
+                                    <input type="email" name="email" value={user.email} onChange={handleInputChange} />
                                 </div>
                                 <div>
                                     <label>Admin: </label>
-                                    <input type="checkbox" name="role" checked={user.role}
-                                           onChange={handleInputChange}/>
+                                    <input type="checkbox" name="role" checked={user.role} onChange={handleInputChange} />
                                 </div>
                                 <button type="submit">Guardar cambios</button>
+                                <button onClick={deleteUser}>Eliminar Usuario :(</button>
                                 {errorMessage && <p className="errorMessage">{errorMessage}</p>}
                             </form>
                         </div>
